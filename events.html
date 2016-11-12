@@ -8,6 +8,17 @@
     <title>Events</title>
 </head>
 <body>
-    <div id="container"></div>
+    <div id="container">
+        <a href="https://www.salesforce.com/" id="myLink">Click me!</a>
+    </div>
+    <script>
+        let myLink = document.querySelector('#myLink');
+        let cb1 = () => alert('hello');
+        let cb2 = () => alert('aloha!');
+        myLink.addEventListener('click', cb1);
+        myLink.addEventListener('click', cb2);
+
+        myLink.removeEventListener('click', cb1);
+    </script>
 </body>
 </html>
