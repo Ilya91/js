@@ -21,6 +21,18 @@
 <body>
     <div class="container">
     </div>
+    <ul class="list">
+        <li attr="1">1</li>
+        <li attr="2">2</li>
+        <li attr="3">3</li>
+        <li attr="4">4</li>
+        <li attr="5">5</li>
+        <li attr="6">6</li>
+        <li attr="7">7</li>
+        <li attr="8">8</li>
+        <li attr="9">9</li>
+        <li attr="10">10</li>
+    </ul>
     <script>
         /*let myLink = document.querySelector('#myLink');
         let cb1 = () => alert('hello');
@@ -35,11 +47,38 @@
         document.addEventListener('click', cb2, true);
 
         myLink.removeEventListener('click', cb1);*/
+        let activeEl;
+        let offsetX = 0;
+        let offsetY = 0;
         let container = document.querySelector('.container');
-        let cb1 = (e) => {
-            container.classList.add('red');
+        let list = document.querySelector('.list');
+        let mDown = (e) => {
+            console.log('нажали кнопку мыши', e);
+            activeEl = e.target;
+            offsetX = e.offsetX;
+            offsetY = e.offsetY;
         };
-        container.addEventListener('mouseover', cb1);
+        let mUp = (e) => {
+            console.log('отпустили кнопку мыши');
+            activeEl = null;
+        };
+        let mMove = (e) => {
+            //console.log('двигаем курсор', e);
+            if (activeEl){
+                activeEl.style.top = e.clientY - offsetY + 'px';
+                activeEl.style.left = e.clientX - offsetX + 'px';
+            }
+        };
+        /*let cb1 = (e) => {
+            container.classList.add('red');
+        };*/
+        container.addEventListener('mousedown', mDown);
+        container.addEventListener('mouseup', mUp);
+        container.addEventListener('mousemove', mMove);
+        list.addEventListener('click', (e) => console.log(`кликнули на ${e.target.getAttribute('attr')}`));
+        /*for(let item of list.children){
+            item.addEventListener('click', (e) => console.log(`кликнули на ${e.target.getAttribute('attr')}`));
+        }*/
     </script>
 </body>
 </html>
