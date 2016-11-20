@@ -30,8 +30,7 @@
         }
         var img = target.querySelector('img');
         var largeImg = document.querySelector('#largeImg');
-        var srcSmall = target.getAttribute('src');
-        var srcLarge = srcSmall.slice(0, -9) + 'lg.jpg';
+        var srcLarge = target.parentNode.href;
         largeImg.setAttribute('src', srcLarge);
         console.log(srcLarge);
     });
